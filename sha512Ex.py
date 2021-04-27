@@ -60,7 +60,7 @@ class sha512Ex (object):
         for i in range(len(self.message) // self._b2):
             self.handle(self.message[i * self._b2:i * self._b2 + self._b2])
 
-        return self.getNewData()
+        return self.padding()
 
     def hexdigest(self):
         return ''.join( [ (('%0' + str(self._b1) + 'x') % (a)) for a in self.digest()])
@@ -101,7 +101,7 @@ class sha512Ex (object):
         return bin(newHashLength * 8)[2:].rjust(self.block_size, "0")
 
 
-    def getNewData(self):
+    def padding(self):
         originalHashLength = bin((self.secret_len + len(self.data)) * 8)[2:].rjust(self.block_size, "0")    
         padData = ''.join(bin(ord(i))[2:].rjust(8, "0") for i in self.data) + "1"
         padData += "0" * (((self.block_size*7) - (len(padData)+(self.secret_len*8)) % self._b2) % self._b2) + originalHashLength 

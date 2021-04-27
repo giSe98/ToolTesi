@@ -1,30 +1,3 @@
-# Copyright (C) 2014 by Stephen Bradshaw
-#
-# SHA1 and SHA2 generation routines from SlowSha https://code.google.com/p/slowsha/
-# which is: Copyright (C) 2011 by Stefano Palazzo
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-
-
-__version__ = "0.1"
-
-
 from re import match
 from math import ceil
 
@@ -59,7 +32,7 @@ class sha256Ex (object):
         for i in range(len(self.message) // self._b2):
             self.handle(self.message[i * self._b2:i * self._b2 + self._b2])
 
-        return self.getNewData()
+        return self.padding()
 
     def hexdigest(self):
         return ''.join( [ (('%0' + str(self._b1) + 'x') % (a)) for a in self.digest()])
@@ -100,7 +73,7 @@ class sha256Ex (object):
         return bin(newHashLength * 8)[2:].rjust(self.block_size, "0")
 
 
-    def getNewData(self):
+    def padding(self):
         originalHashLength = bin((self.secret_len + len(self.data)) * 8)[2:].rjust(self.block_size, "0")    
         padData = ''.join(bin(ord(i))[2:].rjust(8, "0") for i in self.data) + "1"
         padData += "0" * (((self.block_size*7) - (len(padData)+(self.secret_len*8)) % self._b2) % self._b2) + originalHashLength 

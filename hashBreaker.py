@@ -23,7 +23,7 @@ def usage():
         "--------------------------------------------------------------------------------------------------------------------\n"
         "\n"
         "Usage (in random order): \n"
-        "  hashBreaker.py --data=<data> --signature=<signature> --format=<format> --append=<data> --secret=<length>[options] \n"
+        "  hashbreaker.py --data=<data> --signature=<signature> --format=<format> --append=<data> --secret=<length>[options] \n"
         "\n"
         "INPUT OPTIONS\n"
         "-d --data=<data>                   The original string that we're going to extend\n"
@@ -173,7 +173,7 @@ def main(argv):
         h = sha512Ex.sha512Ex(data, signature, len_secret,append)
 
     newData = h.extend()
-        
+    
     if out_data_format == "hex":
         newData = h.getHex()
         
