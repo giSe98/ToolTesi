@@ -1,8 +1,10 @@
 # HashBreaker by Giuseppe Seminara 
 
-Tool implementato per l'applicazione di un noto attacco alle funzioni crittografiche, il "**Length Extension Attack**", studiato come applicazione pratica per la tesi triennale in Ingegneria Informatica dal nome "[Hash Length Extension: analisi ed implementazione dell’attacco](https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:c102b015-c54f-425a-a14d-d8c971c58090)".
+Tool implementato per l'applicazione di un noto attacco alle funzioni crittografiche, il "**[Length Extension Attack](https://en.wikipedia.org/wiki/Length_extension_attack)**", studiato come applicazione pratica per la tesi triennale in Ingegneria Informatica dal nome "[Hash Length Extension: analisi ed implementazione dell’attacco](https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:c102b015-c54f-425a-a14d-d8c971c58090)".
 
 Hashbreaker è un tool che effettua l’estensione della lunghezza sulle funzioni hash costruite secondo [Merkle-Damagard](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction), in particolare su: ``MD5, SHA1, SHA256 e SHA512``. Tale attacco è noto in letteratura da molto tempo ma ancora utilizzato stante l’enorme diffusione di tali funzioni. L’utilizzo del detto tool è al solo fine didattico, atto a comprovare la “fragilità” delle costruzioni di tali funzioni se usate in modo improprio.
+
+Per comprendere al meglio come il tool è stato implementato leggi la [spiegazione](https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:c102b015-c54f-425a-a14d-d8c971c58090#pageNum=40).
 
 ## Usage
 
